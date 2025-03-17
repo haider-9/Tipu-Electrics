@@ -1,6 +1,60 @@
 @import "tailwindcss";
 
 body{
-    background-color: #202020;
-    color: #ffffff;
+      background: linear-gradient(to right, rgb(15, 23, 42), rgb(24, 24, 27));
+      color: #ffffff;
 }
+
+/* Page transition animations */
+@keyframes slideInRight {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideOutLeft {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+  
+  /* Page transition classes */
+  .page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s ease-in-out;
+  }
+  
+  .page-enter {
+    transform: translateX(100%);
+  }
+  
+  .page-enter-active {
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+  }
+  
+  .page-exit {
+    transform: translateX(0);
+  }
+  
+  .page-exit-active {
+    transform: translateX(-100%);
+    transition: transform 0.6s ease-in-out;
+  }
+  
+  /* Make sure content doesn't overflow during animations */
+  html, body {
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
