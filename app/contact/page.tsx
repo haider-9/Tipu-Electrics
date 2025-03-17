@@ -30,7 +30,7 @@ export default function Contact() {
         </motion.div>
         <h2 className="text-4xl md:text-5xl font-bold mb-4">Contact <span className="text-amber-500">Us</span></h2>
         <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-          Get in touch with our team for inquiries, quotes, or emergency electrical services. We're available 24/7.
+          Get in touch with our team for inquiries, quotes, or emergency electrical services. We are available 24/7.
         </p>
       </motion.div>
 
