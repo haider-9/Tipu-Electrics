@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { CloudLightning, ChevronLeft, ChevronRight } from "lucide-react";
+import { CloudLightning } from "lucide-react";
 import { FaBoltLightning } from "react-icons/fa6";
 
 export default function HeroSection() {
