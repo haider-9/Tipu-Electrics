@@ -57,7 +57,7 @@ export default function About() {
             
             <div className="space-y-6 text-gray-300">
               <p className="text-lg">
-                Tipu Electrical Services has been providing top-quality electrical solutions to residential, commercial, and industrial clients for over 15 years. Founded with a commitment to excellence, we've grown to become one of the most trusted names in the industry.
+                Tipu Electrical Services has been providing top-quality electrical solutions to residential, commercial, and industrial clients for over 15 years. Founded with a commitment to excellence, we have grown to become one of the most trusted names in the industry.
               </p>
               
               <p className="text-lg">
