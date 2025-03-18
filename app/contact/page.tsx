@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, ExternalLink, Calendar } from "lucide-react";
+import { Phone, Mail, MapPin, Calendar } from "lucide-react";
 import { FaBoltLightning } from "react-icons/fa6";
 
 export default function Contact() {
