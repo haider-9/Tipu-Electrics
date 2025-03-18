@@ -1,62 +1,114 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
+import {  useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Home, Info, Settings, Phone } from "lucide-react";
 import Link from "next/link";
+import { AnimatePresence, motion } from "framer-motion";
+
+// Define route configuration with icons and labels
+const routeConfig = [
+  { path: '/', label: 'Home', icon: Home },
+  { path: '/about', label: 'About', icon: Info },
+  { path: '/services', label: 'Services', icon: Settings },
+  { path: '/contact', label: 'Contact', icon: Phone },
+];
 
 export default function Template({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const [slideDirection, setSlideDirection] = useState<'left' | 'right' | null>(null);
   
-  // Define routes for navigation
-  const routes = ['/', '/about', '/services', '/projects', '/contact'];
-  const currentIndex = routes.indexOf(pathname);
-  const prevRoute = currentIndex <= 0 ? routes[routes.length - 1] : routes[currentIndex - 1];
-  const nextRoute = currentIndex >= routes.length - 1 ? routes[0] : routes[currentIndex + 1];
+  // Find current route index
+  const currentIndex = routeConfig.findIndex(route => route.path === pathname);
+  const prevRoute = currentIndex <= 0 
+    ? routeConfig[routeConfig.length - 1].path 
+    : routeConfig[currentIndex - 1].path;
+  const nextRoute = currentIndex >= routeConfig.length - 1 
+    ? routeConfig[0].path 
+    : routeConfig[currentIndex + 1].path;
 
-  // Apply animation class when component mounts
-  useEffect(() => {
-    const pageElement = document.getElementById('page-content');
-    if (pageElement) {
-      pageElement.classList.add('page-enter');
-      
-      // Force a reflow to ensure the animation works
-      void pageElement.offsetWidth;
-      
-      pageElement.classList.add('page-enter-active');
-      
-      const timer = setTimeout(() => {
-        pageElement.classList.remove('page-enter', 'page-enter-active');
-      }, 600); // Match this to your CSS transition duration
-      
-      return () => clearTimeout(timer);
-    }
-  }, [pathname]);
+  // Handle navigation with direction tracking
+  const handleNavigation = useCallback((direction: 'left' | 'right') => {
+    setSlideDirection(direction);
+  }, []);
+
+  // Page transition variants for framer-motion
+  const pageVariants = {
+    initial: (direction: 'left' | 'right') => ({
+      x: direction === 'right' ? '100%' : '-100%',
+      opacity: 0,
+    }),
+    animate: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        x: { type: 'spring', stiffness: 300, damping: 30 },
+        opacity: { duration: 0.2 }
+      }
+    },
+    exit: (direction: 'left' | 'right') => ({
+      x: direction === 'right' ? '-100%' : '100%',
+      opacity: 0,
+      transition: {
+        x: { type: 'spring', stiffness: 300, damping: 30 },
+        opacity: { duration: 0.2 }
+      }
+    })
+  };
 
   return (
-    <div className="relative min-h-screen">
-      <div id="page-content" className="page">
-        {children}
+    <div className="relative min-h-screen overflow-hidden">
+      <AnimatePresence initial={false} mode="wait" custom={slideDirection}>
+        <motion.div
+          key={pathname}
+          custom={slideDirection}
+          variants={pageVariants}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          className="w-full min-h-screen"
+        >
+          {children}
+        </motion.div>
+      </AnimatePresence>
+      
+      {/* Navigation controls */}
+      <div className="fixed bottom-8 right-8 flex gap-3 z-50">
+        <Link href={prevRoute} passHref onClick={() => handleNavigation('left')}>
+          <Button
+            variant="outline"
+            className="border-2 border-amber-500 text-amber-500 p-2 hover:bg-amber-500 hover:text-slate-900 transition-colors rounded-full shadow-lg"
+            aria-label="Previous page"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </Button>
+        </Link>
+        <Link href={nextRoute} passHref onClick={() => handleNavigation('right')}>
+          <Button
+            variant="outline"
+            className="border-2 border-amber-500 text-amber-500 p-2 hover:bg-amber-500 hover:text-slate-900 transition-colors rounded-full shadow-lg"
+            aria-label="Next page"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </Button>
+        </Link>
       </div>
       
-      <div className="fixed bottom-8 right-8 flex gap-3 z-50">
-        <Link href={prevRoute} passHref>
-          <Button
-            variant="outline"
-            className="border-2 border-amber-500 text-amber-500 p-2 hover:bg-amber-500 hover:text-slate-900 transition-colors"
-          >
-            <ChevronLeft className="w-8 h-8" />
-          </Button>
-        </Link>
-        <Link href={nextRoute} passHref>
-          <Button
-            variant="outline"
-            className="border-2 border-amber-500 text-amber-500 p-2 hover:bg-amber-500 hover:text-slate-900 transition-colors"
-          >
-            <ChevronRight className="w-8 h-8" />
-          </Button>
-        </Link>
+      {/* Navigation indicator */}
+      <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2 z-50">
+        {routeConfig.map((route, index) => (
+          <Link key={route.path} href={route.path}>
+            <div 
+              className={`w-3 h-3 rounded-full cursor-pointer transition-all duration-300 ${
+                pathname === route.path 
+                  ? 'bg-amber-500 scale-125' 
+                  : 'bg-gray-400 hover:bg-amber-300'
+              }`}
+              title={route.label}
+            />
+          </Link>
+        ))}
       </div>
     </div>
   );

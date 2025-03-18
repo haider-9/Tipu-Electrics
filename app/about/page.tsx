@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Award, Clock, Users, ShieldCheck } from "lucide-react";
+import Image from "next/image";
 import { FaBoltLightning } from "react-icons/fa6";
 
 export default function About() {
@@ -29,14 +30,8 @@ export default function About() {
   ];
 
   return (
-    <section className="relative flex flex-col items-center justify-center min-h-screen w-full text-white py-16">
-      <div className="absolute inset-0 w-full h-full">
-        <img
-          src="/"
-          alt="About Tipu Electrical Services"
-          className="object-cover object-center opacity-20 h-full w-full"
-        />
-      </div>
+    <section className="relative flex flex-col items-center mt-10 justify-center min-h-screen w-full text-white py-16">
+ 
 
       <div className="container mx-auto px-4 z-10 max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -84,10 +79,12 @@ export default function About() {
             className="space-y-10"
           >
             <div className="relative rounded-lg overflow-hidden border-2 border-amber-500/30">
-              <img 
-                src="https://dummyimage.com/600x400/333/fff" 
+              <Image
+                src="/Team.jpg" 
                 alt="Tipu Electrical Team" 
                 className="w-full h-auto"
+                width={500} 
+                height={500}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
                 <div className="p-6">
