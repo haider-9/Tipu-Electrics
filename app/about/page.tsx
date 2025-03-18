@@ -63,12 +63,7 @@ export default function About() {
                 Whether you need a simple repair or a complete electrical system installation, we have the expertise and equipment to get the job done right the first time.
               </p>
             </div>
-            
-            <div className="mt-8">
-              <Button className="bg-amber-500 text-slate-900 font-bold text-lg px-8 py-6 hover:bg-amber-600 transition-colors">
-                Our Projects
-              </Button>
-            </div>
+          
           </motion.div>
           
           {/* Right Column - Image and Stats */}

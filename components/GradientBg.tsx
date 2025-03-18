@@ -1,75 +1,23 @@
 "use client";
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 
 export default function GradientBg() {
-  const [isReducedMotion, setIsReducedMotion] = useState(false);
-  
-  useEffect(() => {
-    // Check for user's motion preference
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    setIsReducedMotion(prefersReducedMotion);
-    
-    // Only render animations if visible in viewport
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.target.classList.contains('gradient-container')) {
-          document.documentElement.style.setProperty('--gradient-opacity', 
-            entry.isIntersecting ? '1' : '0');
-        }
-      });
-    });
-    
-    const container = document.querySelector('.gradient-container');
-    if (container) observer.observe(container);
-    
-    return () => {
-      if (container) observer.unobserve(container);
-    };
-  }, []);
-
-  // If user prefers reduced motion, render a static version
-  if (isReducedMotion) {
-    return (
-      <div className="fixed inset-0 -z-50 bg-gray-900 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-700/20 via-emerald-400/15 to-amber-500/15 opacity-50 blur-xl" />
-      </div>
-    );
-  }
-
   return (
-    <div className="fixed inset-0 -z-50 flex items-center justify-center overflow-hidden bg-gray-900 pointer-events-none gradient-container">
-      {/* Reduced number of elements and simplified animations */}
-      <motion.div
-        className="absolute w-[600px] h-[600px] bg-blue-700/20 blur-[120px] rounded-full pointer-events-none"
-        animate={{
-          scale: [1, 1.1, 1],
-          opacity: [0.2, 0.3, 0.2],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "linear",
-          repeatType: "reverse",
-        }}
-      />
-
-      <motion.div
-        className="absolute w-[500px] h-[500px] bg-emerald-400/10 blur-[150px] rounded-full pointer-events-none"
-        animate={{
-          scale: [1.05, 0.95, 1.05],
-          opacity: [0.15, 0.25, 0.15],
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: "linear",
-          repeatType: "reverse",
+    <div className="fixed inset-0 -z-50 overflow-hidden bg-black pointer-events-none">
+      {/* More visible electricity-themed gradient background */}
+      <div className="absolute inset-0 bg-gradient-radial from-blue-500/50 via-blue-800/40 to-black opacity-90" />
+      
+      {/* Brighter overlay with electric colors */}
+      <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/25 via-blue-600/15 to-yellow-300/20" />
+      
+      {/* Electric accent at the center */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[400px] md:w-[500px] lg:w-[600px] h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] bg-gradient-radial from-blue-300/40 via-cyan-400/20 to-transparent blur-xl" />
+      
+      {/* Lightning bolt shape */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] sm:w-[200px] md:w-[250px] lg:w-[300px] h-[250px] sm:h-[350px] md:h-[425px] lg:h-[500px] bg-gradient-to-b from-yellow-300/30 via-blue-400/30 to-cyan-300/20 blur-[3px]"
+        style={{
+          clipPath: "polygon(50% 0%, 0% 50%, 40% 50%, 10% 100%, 90% 40%, 50% 40%, 100% 0%)"
         }}
       />
-
-      {/* Simplified copper glow with less intense animation */}
-      <div className="absolute w-[450px] h-[450px] bg-amber-500/10 blur-[130px] rounded-full pointer-events-none" />
     </div>
   );
 }

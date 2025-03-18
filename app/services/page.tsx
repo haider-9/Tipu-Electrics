@@ -101,9 +101,11 @@ export default function Services() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.8 }}
         className="z-10 mt-16 text-center"
+
       >
+        <a href="tel:+923174636995"></a>
         <Button className="bg-amber-500 text-slate-900 font-bold text-lg px-8 py-6 hover:bg-amber-600 transition-colors">
-          Request a Quote
+          Request a Service
         </Button>
       </motion.div>
     </section>

@@ -115,22 +115,6 @@ export default function Template({ children }: { children: React.ReactNode }) {
           </Button>
         </Link>
       </div>
-
-      {/* Navigation indicator */}
-      <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2 z-50">
-        {routeConfig.map((route) => (
-          <Link key={route.path} href={route.path}>
-            <div
-              className={`w-3 h-3 rounded-full cursor-pointer transition-all duration-300 ${
-                pathname === route.path
-                  ? "bg-amber-500 scale-125"
-                  : "bg-gray-400 hover:bg-amber-300"
-              }`}
-              title={route.label}
-            />
-          </Link>
-        ))}
-      </div>
     </div>
   );
 }

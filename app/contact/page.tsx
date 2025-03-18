@@ -109,32 +109,7 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Location Card */}
-            <div className="bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 shadow-xl hover:border-amber-500/50 transition-all duration-300 group">
-              <div className="flex items-start">
-                <div className="bg-amber-500/20 p-3 rounded-lg mr-4 group-hover:bg-amber-500/30 transition-colors">
-                  <MapPin className="w-6 h-6 text-amber-500" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold mb-2">Visit Us</h3>
-                  <p className="text-gray-300 text-sm mb-1">Office Address:</p>
-                  <p className="text-lg font-medium">
-                    Irrigation Chs
-                    <br />
-                    Lahore, Punjab
-                    <br />
-                    Pakistan
-                  </p>
-                  <Button
-                    className="mt-4 bg-transparent border border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-slate-900 transition-colors text-sm py-1 px-3"
-                    onClick={openGoogleMapsDirections}
-                  >
-                    Get Directions <ExternalLink className="w-3 h-3 ml-1" />
-                  </Button>
-                </div>
-              </div>
-            </div>
-
+      
             {/* Hours Card */}
             <div className="bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 shadow-xl hover:border-amber-500/50 transition-all duration-300 group">
               <div className="flex items-start">
@@ -210,26 +185,6 @@ export default function Contact() {
             </div>
           </motion.div>
         </div>
-
-        {/* Emergency Banner */}
-        <motion.div
-          variants={itemVariants}
-          className="mt-12 bg-gradient-to-r from-amber-500 to-amber-600 p-6 rounded-2xl text-slate-900 text-center shadow-lg"
-        >
-          <h3 className="text-2xl font-bold mb-3">
-            Need Emergency Electrical Service?
-          </h3>
-          <p className="mb-6 text-lg max-w-2xl mx-auto">
-            Our technicians are available 24/7 for urgent electrical problems in
-            Lahore. Dont wait when safety is at risk.
-          </p>
-          <Button
-            className="bg-slate-900 text-white hover:bg-slate-800 px-8 py-6 text-lg font-bold rounded-full shadow-xl hover:shadow-2xl transition-all transform hover:scale-105"
-            onClick={() => (window.location.href = "tel:+923174636995")}
-          >
-            <Phone className="w-6 h-6 mr-3" /> Call Our Emergency Line
-          </Button>
-        </motion.div>
       </motion.div>
     </section>
   );
