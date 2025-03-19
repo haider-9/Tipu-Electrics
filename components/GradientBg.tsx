@@ -2,7 +2,7 @@
 
 export default function GradientBg() {
   return (
-    <div className="fixed inset-0 -z-50 overflow-hidden bg-black pointer-events-none">
+    <div className="fixed inset-0 -z-50 overflow-hidden bg-black pointer-events-none h-[100dvh]">
       {/* More visible electricity-themed gradient background */}
       <div className="absolute inset-0 bg-gradient-radial from-blue-500/50 via-blue-800/40 to-black opacity-90" />
       
