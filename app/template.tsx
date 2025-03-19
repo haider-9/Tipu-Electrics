@@ -95,7 +95,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
         >
           <Button
             variant="outline"
-            className="border-2 border-amber-500 text-amber-500 p-2 hover:bg-amber-500 hover:text-slate-900 transition-colors rounded-full shadow-lg"
+            className="border-2 border-amber-500 text-amber-500 p-2 hover:bg-amber-500 hover:text-slate-900 transition-colors rounded-full shadow-lg cursor-pointer"
             aria-label="Previous page"
           >
             <ChevronLeft className="w-6 h-6" />
@@ -108,7 +108,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
         >
           <Button
             variant="outline"
-            className="border-2 border-amber-500 text-amber-500 p-2 hover:bg-amber-500 hover:text-slate-900 transition-colors rounded-full shadow-lg"
+            className="border-2 border-amber-500 text-amber-500 p-2 hover:bg-amber-500 hover:text-slate-900 transition-colors rounded-full shadow-lg cursor-pointer"
             aria-label="Next page"
           >
             <ChevronRight className="w-6 h-6" />
