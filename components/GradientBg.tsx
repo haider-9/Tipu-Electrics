@@ -4,7 +4,6 @@ export default function GradientBg() {
   return (
     <div className="fixed inset-0 -z-50 overflow-hidden bg-black pointer-events-none "
     style={{ 
-      height: '100vh',
       height: 'calc(var(--vh, 1vh) * 100)',
       position: 'fixed',
       top: 0,
